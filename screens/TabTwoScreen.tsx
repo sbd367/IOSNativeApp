@@ -9,7 +9,7 @@ export default function TabTwoScreen() {
   return (
     <ImageBackground source={fishingPic} resizeMode="cover" style={styles.backgroundImg}>
       <View style={styles.container}>
-        <Text style={styles.title}>Tab Two</Text>
+        <Text style={styles.title}>Here's a list of projects I've worked on.</Text>
         <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
         <EditScreenInfo type='tabTwo'/>
       </View>
@@ -26,11 +26,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
+    position: 'relative',
+    bottom: 100
   },
   title: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   separator: {
     marginVertical: 30,
