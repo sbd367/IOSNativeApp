@@ -38,7 +38,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
+      <Stack.Screen name="Root" component={mainComponent} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" options={{headerTitle: 'Social Links'}} component={ModalScreen} />
@@ -51,18 +51,18 @@ function RootNavigator() {
  * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
  * https://reactnavigation.org/docs/bottom-tab-navigator
  */
-const BottomTab = createBottomTabNavigator<RootTabParamList>();
+const TabNavig8r = createBottomTabNavigator<RootTabParamList>();
 
-function BottomTabNavigator() {
+function mainComponent() {
   const colorScheme = useColorScheme();
 
   return (
-    <BottomTab.Navigator
+    <TabNavig8r.Navigator
       initialRouteName="TabOne"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
       }}>
-      <BottomTab.Screen
+      <TabNavig8r.Screen
         name="TabOne"
         component={TabOneScreen}
         options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
@@ -85,15 +85,29 @@ function BottomTabNavigator() {
           ),
         })}
       />
-      <BottomTab.Screen
+      <TabNavig8r.Screen
         name="TabTwo"
         component={TabTwoScreen}
-        options={{
-          title: 'Tab Two',
+        options={({ navigation }: RootTabScreenProps<'TabTwo'>) => ({
+          title: 'Current endeavors',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-        }}
+          headerRight: () => (
+            <Pressable
+              onPress={() => navigation.navigate('Modal')}
+              style={({ pressed }) => ({
+                opacity: pressed ? 0.5 : 1,
+              })}>
+              <FontAwesome
+                name="external-link"
+                size={25}
+                color={Colors[colorScheme].text}
+                style={{ marginRight: 15 }}
+              />
+            </Pressable>
+          )
+        })}
       />
-    </BottomTab.Navigator>
+    </TabNavig8r.Navigator>
   );
 }
 
