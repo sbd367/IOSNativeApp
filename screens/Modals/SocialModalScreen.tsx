@@ -2,10 +2,10 @@ import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
 import { Platform, StyleSheet, Linking, Alert } from 'react-native';
 import { SocialIcon } from 'react-native-elements';
-import { Text, View } from '../components/Themed';
+import { Text, View } from '../../components/Themed';
 import { SocialMediaType } from 'react-native-elements/dist/social/SocialIcon';
 
-export default function ModalScreen() {
+export default function SocialModalScreen() {
   const linkedin:SocialMediaType = 'linkedin',
         github:SocialMediaType = 'github',
         instagram:SocialMediaType = 'instagram';

@@ -1,52 +1,73 @@
 import React from "react";
-import { StyleSheet, TouchableOpacity, Dimensions, Image } from "react-native";
+import { StyleSheet, TouchableOpacity, Dimensions, Image, Linking, Alert } from "react-native";
 import Carousel from 'react-native-anchor-carousel';
 import discordBotSS from '../assets/images/discord.png';
 import zapInfoPhoto from '../assets/images/zapindeed.png';
 import NativeApp from '../assets/images/NativeApp.png';
 import { Text, View } from './Themed';
 import { Project } from "../types";
+import { Button } from "react-native-elements";
 
 export default function TabTwo() {
     const carouselRef = React.useRef(null);
     const {width: windowWidth, height: windowHeight} = Dimensions.get('window');
     const projects = [
         {
+            projectName: 'ZapInfo',
+            projectDescription: [
+                'This application was the launching point for my career as a software developer.',
+                'This was an Chrome extension based IaaS platform used for recruiting/sourcing task automation.'
+            ],
+            repoUrl: 'https://www.zapinfo.com/',
+            backgroundPhoto: zapInfoPhoto
+        },
+        {
             projectName: 'Discord Music Bot',
-            projectDescription: 'This is a music bot that I wrote that takes either YouTube URLs, or search strings, and plays that audio to a voice channel',
+            projectDescription: [
+                'This is a music bot that I wrote, it takes accepts either YouTube URLs, or search strings, then plays that audio to a voice channel.',
+                'This Projects was created is JS and interacts with Discord\'s API via Discord.js'
+            ],
             repoUrl: 'https://github.com/sbd367/DiscordMusicApp',
             backgroundPhoto: discordBotSS
         },
         {
             projectName: 'React Native App (you\'re lookn at it)',
-            projectDescription: 'This is a React IOS application that I made using tooling provided by expo, this application was written with TypeScript and React/Native',
+            projectDescription: ['This is a React IOS application that I made using tooling provided by expo, this application was written with TypeScript and React/Native'],
             repoUrl: 'https://github.com/sbd367/IOSNativeApp',
             backgroundPhoto: NativeApp
-        },
-        {
-            projectName: 'ZapInfo',
-            projectDescription: 'This application took up a good chunk of my time and was the launching point for my career as a software developer. Here I learned an incredible amout both working in a startup environment aswell as working within a large corporation.',
-            repoUrl: 'https://www.zapinfo.com/',
-            backgroundPhoto: zapInfoPhoto
-        },
+        }
     ]
     const renderItem = ({item, index}:{item:Project, index:Number}) => {
      return (
-             <TouchableOpacity
-                style={styles.item}
-                onPress={() => {
-                    carouselRef.current.scrollToIndex(index);
-                }}>
-                <Image style={styles.projectPhoto} source={item.backgroundPhoto}/>
-                <View style={styles.innerCcontent}>
-                    <View style={styles.headerText}>
-                        <Text style={styles.titleText}>{item.projectName}</Text>
-                    </View>
-                    <View style={styles.descriptionText}>
-                        <Text style={styles.descriptionInnerText}>{item.projectDescription}</Text>
-                    </View>
-                </View>
-             </TouchableOpacity>
+        <View style={styles.itemContainer}>
+            <TouchableOpacity
+            onPress={() => {
+                carouselRef.current.scrollToIndex(index);
+            }}>
+            <View style={styles.headerText}>
+                <Text style={styles.titleText}>{item.projectName}</Text>
+            </View>
+            <View style={styles.projectPhoto}>
+                <Image style={styles.actualPhoto} source={item.backgroundPhoto}/>
+            </View>
+            <View style={styles.descriptionText}>
+                {
+                    item.projectDescription.map((descLine, ind) => (
+                        <Text key={ind} style={styles.descriptionInnerText}>{descLine}</Text>
+                    ))
+                }
+            </View>
+            <View style={styles.bottomButtons}>
+              <Button 
+                title='See More'
+                type='outline'
+                onPress={async () => {
+                    let supported = await Linking.canOpenURL(item.repoUrl);
+                return supported ? Linking.openURL(item.repoUrl) : Alert.alert('I\'m not sure what to do here...');
+              }}/>
+            </View>
+            </TouchableOpacity>
+        </View>
      );
     }
     return (
@@ -68,27 +89,34 @@ const styles = StyleSheet.create({
     innerCcontent: {
         backgroundColor: 'transparent',
         position: "relative",
-        bottom: 130
+        bottom: 1
     },
     headerText: {
         display: 'flex',
-        alignItems: 'center',
-        bottom: 120,
-        right: 30,
-        padding: 10,
+        flex: 0,
+        padding: 20,
+        top: 30,
         width: 250,
+        left: 55,
+        borderRadius: 5,
+        alignItems: 'center',
         backgroundColor: 'rgba(17, 17, 17, 0.7)'
     },
     projectPhoto: {
-        display: "flex",
+        display: 'flex',
+        flex: 0,
+        backgroundColor: 'transparent',
         alignItems: 'center',
-        top: 80,
-        right: 86,
-        maxWidth: 350
-
+        top: 60
+    },
+    actualPhoto: {
+        borderRadius: 7
     },
     descriptionInnerText: {
         color: 'white',
+        fontSize: 16,
+        marginTop: 7,
+        overflow: 'scroll'
     },
     titleText: {
         color: 'white',
@@ -96,29 +124,52 @@ const styles = StyleSheet.create({
         fontSize: 19
     },
     descriptionText: {
+        display: 'flex',
+        flex: 0,
         position: 'relative',
-        display: "flex",
-        alignContent:'center',
-        backgroundColor: 'transparent',
-        top: 150,
+        alignItems:'center',
+        backgroundColor: 'rgba(17, 17, 17, 0.7)',
+        top: 50,
+        borderRadius: 6,
+        padding: 15,
         width: 250,
-        right: 40,
-        marginVertical: 20
+        left: 60,
+        marginVertical: 25
+    },
+    itemContainer: {
+        display: 'flex',
+        backgroundColor: 'transparent',
+        flex: 0,
+        height: 600,
+        bottom: 0,
+        alignContent: 'center'
     },
     baseContainer: {
         backgroundColor: 'transparent',
-        bottom: 100
+        alignItems: 'center',
+        bottom: 70
     },
     carousel: {
         flexGrow: 0,
-        height: 500,
-        top: 150,
+        height: 550,
+        top: 60,
         bottom: 100,
         backgroundColor: 'rgba(37, 37, 37, 0.5)',
         borderRadius: 5
     },
+    bottomButton: {
+        color:'black'
+    },
+    bottomButtons: {
+        display: 'flex',
+        flex: 0,
+        top: 70,
+        left: 75,
+        width: 200,
+        alignItems: 'center',
+        backgroundColor: 'transparent'
+    },
     item: {
-        position: 'relative',
-        marginHorizontal: 93
+        color: 'white'
     } 
 });
