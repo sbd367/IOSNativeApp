@@ -28,15 +28,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'transparent',
     position: 'relative',
-    bottom: 100
+    bottom: 20
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold'
   },
   separator: {
-    marginVertical: 30,
+    marginVertical: 20,
     height: 1,
-    width: '80%',
+    width: '90%',
   },
 });

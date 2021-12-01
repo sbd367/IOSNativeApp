@@ -39,6 +39,7 @@ export default function ModalScreen() {
             <SocialIcon
               type={icon.type}
               iconSize={60}
+              style={styles.icon}
               onPress={async () => {
                 const link = icon.url,
                       supported = await Linking.canOpenURL(link);
@@ -64,6 +65,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  icon: {
+    height: 80,
+    width: 80,
+    borderRadius: 30
   },
   title: {
     fontSize: 20,
