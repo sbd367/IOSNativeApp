@@ -17,7 +17,7 @@ export default function TabOne(){
                     style={styles.descriptionText}
                     lightColor="rgba(0,0,0,0.8)"
                     darkColor="rgba(255,255,255,0.8)">
-                    {`\t`}I enjoy working with full-stack applications built with JavaScript. I have over 3 years experience working with JS and it's many libraries.
+                    {`\t`}I have a diverse background that allows me to . I have over 3 years experience working with JS and it's many libraries.
                 </Text>
             </View>
         </View>
