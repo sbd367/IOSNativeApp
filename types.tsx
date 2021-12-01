@@ -6,7 +6,6 @@
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { CompositeScreenProps, NavigatorScreenParams } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { Image } from 'react-native-elements/dist/image/Image';
 
 declare global {
   namespace ReactNavigation {
@@ -22,8 +21,8 @@ export type RootStackParamList = {
 
 export type  Project = {
   projectName: String,
-  projectDescription: String,
-  repoUrl: String,
+  projectDescription: Array<String>,
+  repoUrl: string,
   backgroundPhoto: any
 };
 

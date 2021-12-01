@@ -17,7 +17,8 @@ export default function TabOne(){
                     style={styles.descriptionText}
                     lightColor="rgba(0,0,0,0.8)"
                     darkColor="rgba(255,255,255,0.8)">
-                    {`\t`}I have a diverse background that allows me to . I have over 3 years experience working with JS and it's many libraries.
+                    {`\t`}I have a diverse background that allows me to complete tasks in an all encompassing way.
+                    {'\n'}Thus... breaking both the laws of instrument, and Murphy. I have over 3 years experience working with JS and it's many libraries.
                 </Text>
             </View>
         </View>
@@ -27,6 +28,10 @@ export default function TabOne(){
 const styles = StyleSheet.create({
     baseContainer: {
         backgroundColor: 'transparent'
+      },
+      bottomButton: {
+        display: 'flex',
+        flex: 0
       },
       getStartedContainer: {
         alignItems: 'center',

@@ -23,12 +23,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   container: {
+    display: 'flex',
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'transparent',
-    position: 'relative',
-    bottom: 20
+    top: 30,
+    backgroundColor: 'transparent'
   },
   title: {
     fontSize: 20,
